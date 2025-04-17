@@ -25,14 +25,130 @@
     <section>
         <h1>OOJS</h1>
         <article>
-            <h2>Aenean nummy odio orci</h2>
-            <p>Phasellus wisi nulla...</p>
+            <h2>Jármű létrehozása</h2>
+            Gyártó : <input id="gyarto1" type="text"><br>
+            Típus : <input id="tipus1" type="text"><br>
+            Tulajdonos : <input id="tulajdonos1" type="text"><br>
+            Megtett km : <input id="futas1" type="text"><br>
+            <button onclick="jarmuAdd()" type="button">Jármű hozzáadása</button>
         </article>
         <article>
-            <h2>Aenean nummy odio orci</h2>
-            <p>Adipiscing elit praesent...</p>
+            <h2>Bér teherauto létrehozása</h2>
+            Gyártó : <input id="gyarto2" type="text"><br>
+            Típus : <input id="tipus2" type="text"><br>
+            Tulajdonos : <input id="tulajdonos2" type="text"><br>
+            Megtett km : <input id="futas2" type="text"><br>
+            Bérlő : <input id="berlo2" type ="text"><br>
+            Bérleti díjj : <input id="berletidijj2" type ="number"><br>
+            <button onclick="berteherAdd()" type="button">Jármű hozzáadása</button>
         </article>
+        <article>
+            <h2>Járművek lekérdezése</h2>
+            <div id="readDiv"></div>
+        </article>
+
+        <article>
+            <h2>Futás teljesítmény módosítás</h2>
+            Id : <input id="idmod" type ="number"><br>
+            Kilóméter óra jelenlegi állása : <input id="futas3" type ="number"><br>
+            <button onclick="futasMod()" type="button">Jármű hozzáadása</button>
+        </article>
+        <article>
+            <h2>Bérleti dijj emelés</h2>
+            Id : <input id="idmod2" type ="number"><br>
+            Emelés mértéke : <input id="emeles" type="number"><br>
+            <button onclick="berletidijjMod()" type="button">Bérleti dijj mod.</button>
+            <div id="hibaBDijj"></div>
+        </article>
+        
+
+
     </section>
     <footer><div> Készítő : Kővágó Máté Neptun: DZMWSO </div></footer>
+    <script>
+        class jarmu{
+            constructor(gyarto, tipus, tulajdonos, futas)
+            {
+                this.gyarto = gyarto;
+                this.tipus = tipus;
+                this.tulajdonos = tulajdonos;
+                this.futas = futas;
+            }
+
+            futasModosit(ujfutas){
+                this.futas = ujfutas;
+            }
+        }
+
+        class berteher extends jarmu{
+            constructor(gyarto, tipus, tulajdonos, futas, berlo, berletidijj)
+                {
+                    super(gyarto, tipus, tulajdonos, futas);
+                    this.berlo =berlo;
+                    this.berletidijj = isNaN(berletidijj) ? 0 : Number(berletidijj);
+                }
+
+            berletidijjEmel(emeles){
+                this.berletidijj += Number(emeles);
+            }
+        
+        }
+
+        var jarmuvek =[];
+
+        function jarmuAdd(){
+            gyarto = document.getElementById("gyarto1").value;
+            tipus = document.getElementById("tipus1").value;
+            tulajdonos = document.getElementById("tulajdonos1").value;
+            futas = document.getElementById("futas1").value;
+            jarmuvek.push( new jarmu(gyarto, tipus, tulajdonos, futas ))
+            console.log(jarmuvek);
+            lekerdezes();
+        }
+
+        function berteherAdd(){
+            gyarto = document.getElementById("gyarto2").value;
+            tipus = document.getElementById("tipus2").value;
+            tulajdonos = document.getElementById("tulajdonos2").value;
+            futas = document.getElementById("futas2").value;
+            berlo = document.getElementById("berlo2").value;
+            berletidijj = document.getElementById("berletidijj2").value;
+            jarmuvek.push( new berteher(gyarto, tipus, tulajdonos, futas, berlo, berletidijj ))
+            console.log(jarmuvek);
+            lekerdezes();
+        }
+
+        function lekerdezes(){
+
+            var str = "<table><tr><th>id</th><th>Gyártó</th><th>Típus</th><th>Tulajdonos</th><th>Megtett km</th><th>Bérlő</th><th>Bérleti díjj</th></tr>";
+                
+                for(i = 0; i< jarmuvek.length; i++){
+                    str += "<tr><td>" + (i+1) + "</td><td>" + jarmuvek[i].gyarto + "</td><td>" + jarmuvek[i].tipus + "</td><td>" + jarmuvek[i].tulajdonos + "</td><td>" + jarmuvek[i].futas + "</td><td>" + jarmuvek[i].berlo + "</td><td>" + jarmuvek[i].berletidijj + "</td></tr>";
+                    
+                }
+            document.getElementById("readDiv").innerHTML = str;
+            }
+
+        function futasMod(){
+            id = document.getElementById("idmod").value;
+            futas = document.getElementById("futas3").value;
+            jarmuvek[id-1].futasModosit(futas);
+            lekerdezes();
+        }
+
+        function berletidijjMod(){
+            id=document.getElementById("idmod2").value;
+            Emel = Number(document.getElementById("emeles").value);
+            try{
+                jarmuvek[id-1].berletidijjEmel(Emel);
+            } catch{
+
+                document.getElementById("hibaBDijj").innerHTML = "<p>A módosítás nem lehetésges!</p>"
+            }
+            lekerdezes();
+        }
+
+
+    </script>
 </body>
 </html>

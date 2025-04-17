@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>Creating the page structure with new HTML5 tags</title>
     <link type="text/css" rel="stylesheet" href="style.css">
+    <script type="text/javascript" src = "ajax.js"></script>
 </head>
 <body>
     <header>
@@ -25,12 +26,36 @@
     <section>
         <h1>AJAX</h1>
         <article>
-            <h2>Aenean nummy odio orci</h2>
-            <p>Phasellus wisi nulla...</p>
+            <h2>READ funkció megvalósítása</h2>
+            <div id="code"></div>
+            <div id="readDiv"></div>
+            
+            <button onclick="read()" type="button">Read</button>
         </article>
         <article>
-            <h2>Aenean nummy odio orci</h2>
-            <p>Adipiscing elit praesent...</p>
+            <h2>Create</h2>
+            Név (Kötelező, max 30): <input id="name1" type="text"><br>
+            Magasság (Kötelező, max 30): <input id="height1" type="text"><br>
+            Tömeg (Kötelező, max 30): <input id="weight1" type="text"><br>
+            <button type="submit" onclick="create();">Create</button><br>
+            <div id="createResult"></div>
+            <div id="updateDiv"></div>
+        </article>
+        <article>
+            <h2>Update</h2>
+            ID (Kötelező): <input id="idUpd" type="text"></input><br>
+            <button type="submit" onclick="getDataForId();">getDataForId</button><br>
+            Név (Kötelező, max 30): <input id="name2" type="text"><br>
+            Magasság (Kötelező, max 30): <input id="height2" type="text"><br>
+            Tömeg (Kötelező, max 30): <input id="weight2" type="text"><br>
+            <button type="submit" onclick="update();">Update</button><br>
+            <div id = 'updateResult'></div>
+        </article>
+        <article>
+            <h2>Delete</h2>
+            ID (Kötelező): <input id="idDel" type="text"></input><br>
+            <button type="submit" onclick="deleteF();">Delete</button><br>
+            <div id = 'deleteResult'></div>
         </article>
     </section>
     <footer><div> Készítő : Kővágó Máté Neptun: DZMWSO </div></footer>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8">
+  <title>Táblázat</title>
+  <link type="text/css" rel="stylesheet" href="style.css">
+  <script type="text/javascript" src = "tablazat.js"></script>
+</head>
+<body>
+  <header>
+    <h1 class="header">Web-programozás-1 Elméleti Házi feladat</h1>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="tablazat.html" class="active">Táblázat</a></li>
+      <li><a href="html5.html">HTML5</a></li>
+      <li><a href="ChartJS.html">ChartJS</a></li>
+      <li><a href="AJAX.html">AJAX</a></li>
+      <li><a href="OOJS.html">OOJS</a></li>
+    </ul>
+  </nav>
+
+  <aside>
+    <h1>CRUD Táblázat</h1>
+    <p>Teherautók adatainak tárolása</p>
+  </aside>
+
+  <section>
+    <article>
+      <h2>Táblázat beviteli mezők</h2>
+      <form onsubmit="event.preventDefault(); onFormSubmit();">
+        <label>Gyártó</label><label id="gyartoValidErr" style="display: none; color:red">(Kötelező mező!)</label>
+          <input type="text" name="Gyártó" id="gyarto"><br>
+        <label>Típus</label><label id="tipusValidErr" style="display: none; color:red">(Kötelező mező!)</label>
+          <input type="text" name="Típus" id="tipus"><br>
+        <label>Rendszám</label><label id="rendszamValidErr" style="display: none; color:red">(Kötelező mező!)</label>
+          <input type="text" name="Rendszám" id="rendszam"><br>
+        <label>Telephely</label><label id="telepValidErr" style="display: none; color:red">(Kötelező mező!)</label>
+        <input type="text" name="Telep" id="telep"><br>
+        <input type="submit" value="Bevitel">
+      </form>
+    </article>
+    <article>
+      <input type="text" id="searchInput" onkeyup="searchFunction()" placeholder="Keresés" title="Keresés a teljes táblázatban">
+    </article>
+    <article>
+      <table id="myTable">
+        <thead>
+          <tr>
+            <th onclick="sortTable(0)">Gyártó</th>
+            <th onclick="sortTable(1)">Típus</th>
+            <th onclick="sortTable(2)">Rendszám</th>
+            <th onclick="sortTable(3)">Telephely</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+      </table>
+    </article>
+    
+
+  </section>
+  <footer><div> Készítő : Kővágó Máté Neptun: DZMWSO </div></footer>
+  
+</body>
+</html>

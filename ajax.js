@@ -20,7 +20,7 @@ async function read() {
     let list = data.list;
     let str = "<h1>Read</h1>";
     str += "<p>Rekordok száma: " + data.rowCount + "</p>";
-    str += "<p>Az utolsü maximum" + data.maxNum + " rekord:</p>";
+    str += "<p>Az utolsó maximum" + data.maxNum + " rekord:</p>";
     str += "<table><tr><th>id</th><th>Név</th><th>Magasság</th><th>Tömeg</th></tr>";
 
     for (let i = 0; i < list.length; i++) {
@@ -65,7 +65,7 @@ async function create() {
             });
 
             const data = await response.text();
-            const resultMessage = (parseInt(data) > 0) ? "Create successful!" : "Create NOT successful!";
+            const resultMessage = (parseInt(data) > 0) ? "Az adatbázis frissítése sikeres!" : "Az adatbázis nem frissült!";
             document.getElementById("createResult").innerText = resultMessage;
 
             document.getElementById("name1").value = "";
@@ -77,7 +77,7 @@ async function create() {
             document.getElementById("createResult").innerText = "Error: " + error.message;
         }
     } else {
-        document.getElementById("createResult").innerText = "Validation error!!";
+        document.getElementById("createResult").innerText = "Validációs hiba!!";
     }
 }
 
@@ -113,8 +113,8 @@ async function update(){
     });
     let data = await response.text();
     if(data>0)
-    str="Update successful!";
-    elsestr="Update NOT successful!";
+    str="Update sikeres!";
+    elsestr="Update nem sikerült!";
     document.getElementById("updateResult").innerHTML=str;
     document.getElementById("idUpd").value="";
     document.getElementById("name2").value = "";
@@ -136,8 +136,8 @@ async function update(){
                 body: "code="+code+"&op=delete&id="+id
             });
         let data = await response.text();
-        if(data>0) {str="Delete successful!";}
-        else {str="Delete NOT successful!";}
+        if(data>0) {str="A törlés sikeres!";}
+        else {str="A törlés sikertelen!";}
         document.getElementById("deleteResult").innerHTML=str;
         document.getElementById("idDel").value="";
         read();

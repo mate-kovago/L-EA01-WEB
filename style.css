@@ -41,3 +41,32 @@ a:hover { background-color:#ff3300}
 li { 
     display:inline; 
 } 
+
+article {
+    border: 1px solid #ccc;      
+    padding: 20px;               
+    margin: 20px 0;              
+    border-radius: 5px;          
+    background-color: #f9f9f9;   
+  }
+
+  input {
+    margin: 5px;         
+    padding: 8px;        
+    font-size: 16px;     
+    border: 1px solid #ccc; 
+    border-radius: 4px;  
+  }
+
+  table {
+    border-collapse: collapse; 
+    width: 100%;               
+    border: 1px solid black;   
+  }
+  
+  th, td {
+    border: 1px solid black;   
+    padding: 6px 10px;         
+    text-align: left;         
+    font-size: 14px;         
+  }
